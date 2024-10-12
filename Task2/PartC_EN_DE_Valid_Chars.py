@@ -38,7 +38,7 @@ key = ""
 print("\n-------------------VIGENERE ENCRYPTION & DECRYPTION (VALID CHARS)-------------------\n")
 while (True):
     plain_text = input("Enter Plain Text : ")
-    if plain_text.isalpha():
+    if plain_text.replace(" ", "").isalpha():
         break
     else:
         print("Enter only alphabets\n")
