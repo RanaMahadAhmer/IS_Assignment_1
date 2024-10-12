@@ -18,6 +18,6 @@ plain_text = "Complexity in cryptography adds layers of intrigue and security"
 key = "SECURITY"
 
 cipher_text = encrypt(plain_text, key)
-print("\n-------------------BIFID ENCRYPTION-------------------\n")
+print("\n-------------------VIGENERE ENCRYPTION-------------------\n")
 print(f"Plain Text: {plain_text}")
-print(f"CipherText: {cipher_text}")
+print(f"CipherText: {cipher_text}\n")
