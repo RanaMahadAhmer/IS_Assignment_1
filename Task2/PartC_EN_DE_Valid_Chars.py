@@ -4,12 +4,11 @@ def encrypt(plain_text, key):
     for i in range(len(plain_text)):
         if plain_text[i] == " ":
             cipher_text += plain_text[i]
-        elif plain_text[i].islower():
-            letter_shift = (ord(plain_text[i]) - ord('a') + ord(keyword_repeated[i]) - ord('a')) % 26
-            cipher_text += str(chr(letter_shift + ord('a')))
-        elif plain_text[i].isupper():
-            letter_shift = (ord(plain_text[i]) - ord('A') + ord(keyword_repeated[i]) - ord('A')) % 26
-            cipher_text += str(chr(letter_shift + ord('A')))
+        else:
+            char_base = ord('a') if plain_text[i].islower() else ord('A')
+            key_base = ord('a') if keyword_repeated[i].islower() else ord('A')
+            letter_shift = (ord(plain_text[i]) - char_base + ord(keyword_repeated[i]) - key_base) % 26
+            cipher_text += str(chr(letter_shift + char_base))
 
     return cipher_text
 
@@ -20,12 +19,12 @@ def decrypt(cipher_text, key):
     for i in range(len(cipher_text)):
         if cipher_text[i] == " ":
             decrypted_text += cipher_text[i]
-        elif cipher_text[i].islower():
-            letter_shift = (ord(cipher_text[i]) - ord('a') - (ord(keyword_repeated[i]) - ord('a'))) % 26
-            decrypted_text += str(chr(letter_shift + ord('a')))
-        elif cipher_text[i].isupper():
-            letter_shift = (ord(cipher_text[i]) - ord('A') - (ord(keyword_repeated[i]) - ord('A'))) % 26
-            decrypted_text += str(chr(letter_shift + ord('A')))
+
+        else:
+            char_base = ord('a') if cipher_text[i].islower() else ord('A')
+            key_base = ord('a') if keyword_repeated[i].islower() else ord('A')
+            letter_shift = (ord(cipher_text[i]) - char_base - (ord(keyword_repeated[i]) - key_base)) % 26
+            decrypted_text += str(chr(letter_shift + char_base))
 
     return decrypted_text
 

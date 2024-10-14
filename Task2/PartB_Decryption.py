@@ -4,17 +4,17 @@ def decrypt(cipher_text, key):
     for i in range(len(cipher_text)):
         if cipher_text[i] == " ":
             decrypted_text += cipher_text[i]
-        elif cipher_text[i].islower():
-            letter_shift = (ord(cipher_text[i]) - ord('a') - (ord(keyword_repeated[i]) - ord('a'))) % 26
-            decrypted_text += str(chr(letter_shift + ord('a')))
-        elif cipher_text[i].isupper():
-            letter_shift = (ord(cipher_text[i]) - ord('A') - (ord(keyword_repeated[i]) - ord('A'))) % 26
-            decrypted_text += str(chr(letter_shift + ord('A')))
+
+        else:
+            char_base = ord('a') if cipher_text[i].islower() else ord('A')
+            key_base = ord('a') if keyword_repeated[i].islower() else ord('A')
+            letter_shift = (ord(cipher_text[i]) - char_base - (ord(keyword_repeated[i]) - key_base)) % 26
+            decrypted_text += str(chr(letter_shift + char_base))
 
     return decrypted_text
 
 
-cipher_text = "Umidwgkafw wy pjknpcrtnhtw ooff xyuscu gr ebetvygc oyf kqaqftvl"
+cipher_text = "Usojcmqglc ce vpqtvixztnzc uull deayia mx khkzbemi uel qwgwlzbr"
 key = "SECURITY"
 
 decrypted_text = decrypt(cipher_text, key)
